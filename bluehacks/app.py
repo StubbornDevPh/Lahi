@@ -3,8 +3,15 @@ from flask import Flask, render_template ,url_for ,request
 app = Flask(__name__)
 app.TEMPLATES_AUTO_RELOAD=True
 
-@app.route('/')
+@app.route('/', methods=['POST','GET'])
 def index():
+    
+    if request.method == 'GET':
+        pass
+
+    if request.method == "POST":
+        pass
+
     return render_template('index.html')
 #index then feed
 #about
