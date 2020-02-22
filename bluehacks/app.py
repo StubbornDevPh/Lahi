@@ -1,21 +1,37 @@
-from flask import Flask, render_template ,url_for ,request,redirect
-from os import path
-import sqlite3
-from datetime import date
-import models
+from flask import Flask, render_template ,url_for ,request,redirect,session,logging,redirect,flash
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session,sessionmaker
 
 app = Flask(__name__)
+app.static_folder = 'static'
 app.TEMPLATES_AUTO_RELOAD=True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SECRET_KEY'] = 'anonymouseisreal'
+
+db = SQLAlchemy(app)
+
+class Accounts(db.Model):
+    id = db.Column('user_id', db.Integer, primary_key = True)
+    fname = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    address = db.Column(db.String(100))
+    contact = db.Column(db.String(100))
+    username = db.Column(db.String(100))
+    password = db.Column(db.String(100))
+
+def __init__(self, fname, email, address, contact, username, password):
+    self.fname = fname
+    self.email = email
+    self.address = address
+    self.contact = contact
+    self.username = username
+    self.password = password
+
+db.create_all()
 
 @app.route('/', methods=['POST','GET'])
 def index():
-    
-    if request.method == 'GET':
-        pass
-
-    if request.method == "POST":
-        pass
-
     return render_template('index.html')
 #index then feed
 #about
@@ -24,7 +40,6 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 @app.route('/places')
 def places():
@@ -37,31 +52,12 @@ def login():
 
 @app.route('/register',methods=["POST","GET"])
 def register():
-    if request.method=='GET':
-        pass
-    if request.method=='POST':
-        try:
-            name = request.form.get('fname')
-            email = request.form.get('email')
-            address = request.form.get('address')
-            contact = request.form.get('contact')
-            username = request.form.get('username')
-            password = request.form.get('password')
-            models.create_account(name, email, address, contact, username, password)
-        except:
-            flash('error')
-        finally:
-            return redirect(url_for('login'))
-
+    if request.method == 'POST':
+        Account = Accounts(fname=request.form['fname'], email=request.form['email'], address=request.form['address'], contact=request.form['contact'], username=request.form['username'], password=request.form['password'])
+        db.session.add(Account)
+        db.session.commit()
     return render_template('register.html')
-
-@app.route('/validate/num')
-def validate(num):
-    if(num==0):
-        return 'no acc'
-    elif(num==1):
-        return 'acc match'
-
+    
 if __name__ == "__main__":
     app.run(debug=True, port=6969)
     

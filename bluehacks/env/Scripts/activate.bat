@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\Al Francis\Desktop\bluehacks\env"
+set "VIRTUAL_ENV=C:\Users\Al Francis\Documents\GitHub\Lahi\bluehacks\env"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\Al Francis\Desktop\bluehacks\env'
+VIRTUAL_ENV='C:\Users\Al Francis\Documents\GitHub\Lahi\bluehacks\env'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
