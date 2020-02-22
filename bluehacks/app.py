@@ -19,7 +19,9 @@ def about():
 def places():
     return render_template('places.html')
 
-
+@app.route('/POP')
+def popup():
+    if 
 if __name__ == "__main__":
     app.run(debug=True, port=6969)
     
