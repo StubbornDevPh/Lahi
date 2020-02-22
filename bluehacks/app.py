@@ -15,7 +15,7 @@ def index():
     return render_template('index.html')
 #index then feed
 #about
-#places`
+#places
 #option search place
 @app.route('/about')
 def about():
