@@ -1,0 +1,36 @@
+.feed{
+    border-style: solid;
+    height: 400px;
+    min-width: 900px;
+    width: 65%;
+    margin-left: 10px;
+}
+
+.profile{
+    border-style: solid;
+    height: 400px;
+    min-width: 200px;
+    margin-left:30px;
+}
+
+.events{
+    border-style: solid;
+    height: 190px;
+    width: 15%;
+    margin-left: 10px;
+    flex-direction: column;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.sponsored{
+    border-style: solid;
+    flex-direction: column;
+    margin-left: 10px;
+    height: 190px;
+}
+
+.inline { 
+    display: flex;
+    flex-direction: row;
+}
